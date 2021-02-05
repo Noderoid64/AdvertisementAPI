@@ -14,14 +14,14 @@ namespace AdvertisingApi.Controllers
     [Route("api/[controller]")]
     public class AdvertisementController: Controller
     {
-        private AdvertisementAssembler _advertisementAssembler;
-        private AdvertisementDAO _advertisementDao;
-        private StatisticDAO _statisticDao;
+        private readonly AdvertisementAssembler _advertisementAssembler;
+        private readonly AdvertisementDao _advertisementDao;
+        private readonly StatisticDao _statisticDao;
 
         public AdvertisementController(
             AdvertisementAssembler advertisementAssembler,
-            AdvertisementDAO advertisementDao,
-            StatisticDAO statisticDao
+            AdvertisementDao advertisementDao,
+            StatisticDao statisticDao
             )
         {
             _advertisementAssembler = advertisementAssembler;
@@ -35,7 +35,7 @@ namespace AdvertisingApi.Controllers
             IActionResult result = Ok();
             try
             {
-                Advertisement advertisementToAdd = _advertisementAssembler.assemble(advertisement);
+                Advertisement advertisementToAdd = _advertisementAssembler.Assemble(advertisement);
                 await _advertisementDao.SaveAdvertisementAsync(advertisementToAdd);
             }
             catch (Exception e)
@@ -58,7 +58,7 @@ namespace AdvertisingApi.Controllers
             try
             {
                 AdType.TryParse(type, out AdType adType);
-                Assert.isNotBlank(category);
+                Assert.IsNotBlank(category);
                 Advertisement add = await _advertisementDao.GetRelevantAsync(adType, category, tags);
                 if (add != null)
                 {
@@ -98,16 +98,16 @@ namespace AdvertisingApi.Controllers
         [HttpGet("statistic")]
         public async Task<dynamic> GetStatistic()
         {
-            var AdTypeViews = await _statisticDao.getAllViewsByTypeAsync();
-            var MostViewedPosts = await _statisticDao.getTop10PostsByViews();
-            var MostPopularTags = await _statisticDao.getTop15TagsByViews();
-            var TopCategories = _statisticDao.getTop3Categories();
+            var adTypeViews = await _statisticDao.GetAllViewsByTypeAsync();
+            var mostViewedPosts = await _statisticDao.GetTop10PostsByViews();
+            var mostPopularTags = await _statisticDao.GetTop15TagsByViews();
+            var topCategories = _statisticDao.GetTop3Categories();
             return new
             {
-                AdTypeViews,
-                MostViewedPosts,
-                MostPopularTags,
-                TopCategories
+                AdTypeViews = adTypeViews,
+                MostViewedPosts = mostViewedPosts,
+                MostPopularTags = mostPopularTags,
+                TopCategories = topCategories
             };
         }
     }

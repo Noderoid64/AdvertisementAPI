@@ -7,18 +7,18 @@ namespace AdvertisingApi.Services
 {
     public class AdvertisementAssembler
     {
-        private TagAssembler _tagAssembler;
+        private readonly TagAssembler _tagAssembler;
 
         public AdvertisementAssembler(TagAssembler tagAssembler)
         {
             _tagAssembler = tagAssembler;
         }
-        public Advertisement assemble(AdvertisementDto dto)
+        public Advertisement Assemble(AdvertisementDto dto)
         {
-            Assert.isNotBlank(dto.AdTypeDto.ToString());
-            Assert.isNotBlank(dto.Category);
-            Assert.isNotBlank(dto.Content);
-            Assert.isNotBlank(dto.Cost);
+            Assert.IsNotBlank(dto.AdTypeDto.ToString());
+            Assert.IsNotBlank(dto.Category);
+            Assert.IsNotBlank(dto.Content);
+            Assert.IsNotBlank(dto.Cost);
 
             Advertisement result = new Advertisement();
             

@@ -1,22 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using AdvertisingApi.Model;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace AdvertisingApi.Presistance.DAO
 {
-    public class StatisticDAO
+    public class StatisticDao
     {
-        private AppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
 
-        public StatisticDAO(AppDbContext appDbContext)
+        public StatisticDao(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public async Task<dynamic> getAllViewsByTypeAsync()
+        public async Task<dynamic> GetAllViewsByTypeAsync()
         {
 
             return await _appDbContext.Advertisements
@@ -26,7 +23,7 @@ namespace AdvertisingApi.Presistance.DAO
 
         }
 
-        public dynamic getTop3Categories()
+        public dynamic GetTop3Categories()
         {
             return _appDbContext.Advertisements
                 .Include(ad => ad.Category)
@@ -38,7 +35,7 @@ namespace AdvertisingApi.Presistance.DAO
                 .ToList();
         }
 
-        public async Task<dynamic> getTop10PostsByViews()
+        public async Task<dynamic> GetTop10PostsByViews()
         {
             return await _appDbContext.Advertisements
                 .OrderBy(ad => ad.Views)
@@ -47,7 +44,7 @@ namespace AdvertisingApi.Presistance.DAO
                 .ToListAsync();
         }
         
-        public async Task<dynamic> getTop15TagsByViews()
+        public async Task<dynamic> GetTop15TagsByViews()
         {
             return await _appDbContext.Tags
                 .Include(t => t.Advertisements)

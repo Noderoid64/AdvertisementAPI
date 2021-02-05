@@ -33,10 +33,10 @@ namespace AdvertisingApi
             {
                 options.UseNpgsql(Configuration.GetConnectionString("Postgress"));
             });
-            services.AddScoped<StatisticDAO>();
+            services.AddScoped<StatisticDao>();
             services.AddScoped<TagAssembler>();
             services.AddScoped<AdvertisementAssembler>();
-            services.AddScoped<AdvertisementDAO>();
+            services.AddScoped<AdvertisementDao>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

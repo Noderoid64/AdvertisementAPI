@@ -21,7 +21,7 @@ namespace AdvertisingApi.Presistance
             long result = 0;
             using (var cmd = connection.CreateCommand())
             {
-                cmd.CommandText = PostgressSQL.GetQueueSequenceVal();
+                cmd.CommandText = PostgressSql.GetQueueSequenceVal();
                 var obj = cmd.ExecuteScalar();
                 result = (long)obj;
             }
@@ -35,7 +35,7 @@ namespace AdvertisingApi.Presistance
             connection.Open();
             using (var cmd = connection.CreateCommand())
             {
-                cmd.CommandText = PostgressSQL.ResetQueueSequenceVal();
+                cmd.CommandText = PostgressSql.ResetQueueSequenceVal();
                 var obj = cmd.ExecuteScalar();
             }
             connection.Close();
@@ -47,7 +47,7 @@ namespace AdvertisingApi.Presistance
             connection.Open();
             using (var cmd = connection.CreateCommand())
             {
-                cmd.CommandText = PostgressSQL.SetQueueSequenceVal(value);
+                cmd.CommandText = PostgressSql.SetQueueSequenceVal(value);
                 var obj = cmd.ExecuteScalar();
             }
             connection.Close();

@@ -4,7 +4,7 @@ namespace AdvertisingApi.Helpers
 {
     public static class Assert
     {
-        public static void isNotBlank(string value)
+        public static void IsNotBlank(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {

@@ -1,6 +1,6 @@
 ﻿namespace AdvertisingApi.Presistance
 {
-    public static class PostgressSQL
+    public static class PostgressSql
     {
         public static string ResetQueueSequenceVal()
         {

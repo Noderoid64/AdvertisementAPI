@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AdvertisingApi.Presistance.DAO
 {
-    public class AdvertisementDAO
+    public class AdvertisementDao
     {
-        private AppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
 
-        public AdvertisementDAO(AppDbContext appDbContext)
+        public AdvertisementDao(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
