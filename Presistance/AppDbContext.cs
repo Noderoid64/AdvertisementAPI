@@ -13,6 +13,7 @@ namespace AdvertisingApi.Presistance
             
         }
 
+        // TODO refactor sequence part
         public long GetNextQueueSequenceValue()
         {
             var connection = Database.GetDbConnection();
@@ -60,7 +61,63 @@ namespace AdvertisingApi.Presistance
                 .Property(a => a.AdType)
                 .HasConversion<int>();
 
+            var categories = new[]
+            {
+                new {CategoryId = 1L, Title = "Games"},
+                new {CategoryId = 2L, Title = "Computer science"},
+                new {CategoryId = 3L, Title = "Guitar"},
+                new {CategoryId = 4L, Title = "Social"}
+            };
 
+            var tags = new[]
+            {
+                new {TagId = 1L, Title = "Nice job"},
+                new {TagId = 2L, Title = "Meet"},
+                new {TagId = 3L, Title = "Life"},
+                new {TagId = 4L, Title = "Films"},
+                new {TagId = 5L, Title = "One more tag"}
+            };
+
+            var adds = new []
+            {
+                new
+                {
+                    AdvertisementId = 1L,
+                    AdType = AdType.TextAd,
+                    CategoryId = 1L,
+                    Cost = 34.3m,
+                    Content = "SomeTest",
+                    Views = 34L
+                },
+                new
+                {
+                    AdvertisementId = 2L,
+                    AdType = AdType.BannerAd,
+                    CategoryId = 4L,
+                    Cost = 15.0m,
+                    Content = "Girls like dogs... Do you want to buy a dog?",
+                    Views = 45233L
+                },
+                new
+                {
+                    AdvertisementId = 4L,
+                    AdType = AdType.BannerAd,
+                    CategoryId = 4L,
+                    Cost = 15.0m,
+                    Content = "<html><h1>Hello world</h1></html>",
+                    Views = 2L
+                }
+            };
+
+            modelBuilder.Entity<Category>()
+                .HasData(categories);
+
+            modelBuilder.Entity<Tag>()
+                .HasData(tags);
+
+            modelBuilder.Entity<Advertisement>()
+                .HasData(adds);
+            
             base.OnModelCreating(modelBuilder);
         }
     }
