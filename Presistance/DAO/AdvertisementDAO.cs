@@ -27,6 +27,7 @@ namespace AdvertisingApi.Presistance.DAO
             long i = _appDbContext.GetNextQueueSequenceValue();
             Advertisement add = _appDbContext.Advertisements
                 .Include(ad => ad.Category)
+                .Include(ad => ad.Tags)
                 .FirstOrDefault(ad => ad.AdvertisementId >= i);
             if (add == null)
             {
@@ -53,6 +54,7 @@ namespace AdvertisingApi.Presistance.DAO
         {
             var query = from s in _appDbContext.Advertisements
                     .Include(ad => ad.Category)
+                    .Include(ad => ad.Tags)
                 where
                     s.AdType == type &&
                     s.Category.Title == category &&
