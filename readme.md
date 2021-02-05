@@ -12,6 +12,7 @@ The project exists for the purpose of code practice.
 3. Create migrations:<br> ``dotnet ef migration add init``
 4. Update your db by application model schema:<br> ``dotnet ef database update``
 5. Run app:<br> ``dotnet run``
+6. Open https://localhost:5001/swagger/index.html
 
 ### Note from author
 Please contact me if you have any problems/questions
