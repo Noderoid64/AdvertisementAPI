@@ -15,20 +15,20 @@ namespace AdvertisingApi.Services
         }
         public Advertisement Assemble(AdvertisementDto dto)
         {
-            Assert.IsNotBlank(dto.AdTypeDto.ToString());
+            Assert.IsNotBlank(dto.AdType.ToString());
             Assert.IsNotBlank(dto.Category);
             Assert.IsNotBlank(dto.Content);
             Assert.IsNotBlank(dto.Cost);
 
             Advertisement result = new Advertisement();
             
-            Enum.TryParse(dto.AdTypeDto.ToString(), out AdType adType);
+            Enum.TryParse(dto.AdType.ToString(), out AdType adType);
             result.AdType = adType;
             result.Category = new Category(dto.Category);
             result.Cost = decimal.Parse(dto.Cost);
             result.Content = dto.Content;
 
-            result.Tags = _tagAssembler.Assemble(dto.tags);
+            result.Tags = _tagAssembler.Assemble(dto.Tags);
 
             return result;
         }
