@@ -95,6 +95,7 @@ namespace AdvertisingApi.Controllers
             return result;
         }
 
+        // !important 'dynamic' used only for reducing app complicity by not adding new models for every linq data projection
         [HttpGet("statistic")]
         public async Task<dynamic> GetStatistic()
         {

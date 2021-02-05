@@ -12,6 +12,8 @@ namespace AdvertisingApi.Presistance.DAO
         {
             _appDbContext = appDbContext;
         }
+        
+        // !important 'dynamic' used only for reducing app complicity by not adding new models for every linq data projection
 
         public async Task<dynamic> GetAllViewsByTypeAsync()
         {
